@@ -96,20 +96,16 @@ export default function Header({ forceWhite = false }: HeaderProps) {
 
   const menuItems = [{ name: "الرئيسية", href: "/" }]
 
-  const marqueeText = "عرض خاص: التوصيل بالمجان ف كل أنحاء المغرب، والدفع عند الاستلام، اسرع واطلب الآن"
+  const marqueeText = "عرض خاص: التوصيل بالمجان في كل أنحاء المغرب، والدفع عند الاستلام، اسرع واطلب الآن"
 
   return (
     <>
       {/* Simple Scrolling Banner - Always visible */}
       {!isScrolled && (
         <div className="fixed top-0 left-0 right-0 z-50 bg-red-500 py-3">
-          <div className="marquee-container">
-            <div className="marquee-content text-white text-sm md:text-base font-bold tracking-wider">
-              {/* Repeat the text multiple times to ensure continuous scrolling */}
-              {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp;
-              {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp;
-              {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp;
-              {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp; {marqueeText} &nbsp;&nbsp;&nbsp;
+          <div className="overflow-hidden">
+            <div className="animate-scroll text-white text-sm md:text-base font-bold tracking-wider whitespace-nowrap">
+              {marqueeText}
             </div>
           </div>
         </div>

@@ -308,10 +308,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Product Description - No tabs anymore */}
           {/* Shipping Information */}
-          <div className="flex items-center border-l-4 border-red-500 pl-4 py-2">
-            <Truck size={18} className="text-red-500 ml-3" />
+          <div className="flex items-center border-l-4 border-green-500 pl-4 py-2 bg-green-100">
+            <Truck size={18} className="text-green-500 mx-3" />
             <div>
-              <p className="font-medium text-red-500">التوصيل متاح</p>
+              <p className="font-medium text-green-500">التوصيل متاح</p>
               <p className="text-xs text-gray-600">التوصيل متاح في جميع أنحاء المغرب</p>
             </div>
           </div>

@@ -29,24 +29,19 @@ body {
   background: #dc2626;
 }
 
-/* Simple Marquee animation - Right to Left */
-.marquee-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.marquee-content {
+/* Updated scrolling animation for opposite direction */
+.animate-scroll {
   display: inline-block;
   white-space: nowrap;
-  animation: marquee 30s linear infinite;
+  animation: scroll-reverse 15s linear infinite;
 }
 
-@keyframes marquee {
+@keyframes scroll-reverse {
   0% {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
 }
 
