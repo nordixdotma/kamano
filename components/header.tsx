@@ -127,9 +127,11 @@ export default function Header({ forceWhite = false }: HeaderProps) {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="w-32 h-8 md:w-40 md:h-10 relative">
-                <div className="w-full h-full rounded flex items-center justify-center text-sm font-bold bg-red-500 text-white">
-                  شعار الموقع
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="Website Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </Link>
 
@@ -139,7 +141,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-base relative group transition-colors font-medium text-red-500 hover:text-red-600"
+                  className="text-base relative group transition-colors font-medium text-black hover:text-red-500"
                 >
                   {item.name}
                   <span className="absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-red-500"></span>
@@ -151,7 +153,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 <Link
                   key={category}
                   href={`/category/${encodeURIComponent(category)}`}
-                  className="text-base relative group transition-colors font-medium text-red-500 hover:text-red-600"
+                  className="text-base relative group transition-colors font-medium text-black hover:text-red-500"
                 >
                   {category}
                   <span className="absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-red-500"></span>
@@ -162,12 +164,12 @@ export default function Header({ forceWhite = false }: HeaderProps) {
             {/* Desktop Action Icons */}
             <div className="hidden md:flex items-center">
               <button
-                className="transition-colors relative text-red-500 hover:text-red-600"
+                className="transition-colors relative text-black hover:text-red-500"
                 onClick={openCart}
                 aria-label="السلة"
               >
                 <ShoppingBag size={20} />
-                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
                   {totalItems}
                 </span>
               </button>

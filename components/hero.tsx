@@ -26,7 +26,7 @@ export default function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          src="/hero.png"
           alt="متجر الإلكترونيات - أحدث التقنيات والأجهزة"
           className="object-cover hover:scale-105 transition-transform duration-700"
           priority
@@ -35,9 +35,6 @@ export default function Hero() {
           quality={90}
         />
       </div>
-
-      {/* Optional: Add a subtle hover effect indicator */}
-      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 z-10" />
     </section>
   )
 }

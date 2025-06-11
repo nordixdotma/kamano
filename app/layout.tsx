@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     description: "اكتشف أحدث الأجهزة الإلكترونية والتقنيات بأفضل الأسعار في المغرب.",
     images: ["https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=2080&auto=format&fit=crop"],
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -50,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
       <body className={`${changa.variable} font-changa`}>
         <Suspense fallback={null}>

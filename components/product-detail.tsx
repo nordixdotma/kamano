@@ -73,7 +73,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   }
 
   const handleWhatsAppInquiry = () => {
-    const phoneNumber = "+212643874852"
+    const phoneNumber = "+212704749027" // Replace with your WhatsApp number
 
     // Create a message with product details
     let message = `مرحباً، أنا مهتم بهذا المنتج:\n\n`
