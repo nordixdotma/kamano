@@ -7,16 +7,17 @@ export default function Hero() {
 
   useEffect(() => {
     // Calculate header height (banner + header)
-    // Banner: py-3 = 24px, Header: py-3 = 24px, plus some padding
-    setHeaderHeight(96) // Approximate total height of banner + header
+    setHeaderHeight(96)
   }, [])
 
+  const marginTop = typeof window !== "undefined" && window.innerWidth > 1024 ? 48 : headerHeight;
+
   return (
-    <div className="flex justify-center w-full mt-10 bg-white">
+    <div className="flex justify-center w-full bg-white">
       <section
         id="home"
         className="relative max-w-7xl w-full overflow-hidden cursor-pointer"
-        style={{ height: "500px", marginTop: `${headerHeight}px` }}
+        style={{ marginTop: `${marginTop}px` }}
         onClick={() => {
           // Scroll to products section when hero is clicked
           const productsSection = document.getElementById("products")
@@ -25,7 +26,7 @@ export default function Hero() {
           }
         }}
       >
-        <div className="absolute inset-0 z-0">
+        <div className="relative aspect-[16/9] w-full">
           <Image
             src="/hero.png"
             alt="متجر الإلكترونيات - أحدث التقنيات والأجهزة"
