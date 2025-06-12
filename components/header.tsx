@@ -174,17 +174,17 @@ export default function Header({ forceWhite = false }: HeaderProps) {
             {/* Mobile Menu Button */}
             <div className="flex items-center space-x-4 space-x-reverse md:hidden">
               <button
-                className="relative transition-colors text-red-500 hover:text-red-600"
+                className="relative transition-colors text-black hover:text-red-500"
                 onClick={openCart}
                 aria-label="السلة"
               >
                 <ShoppingBag size={20} />
-                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
                   {totalItems}
                 </span>
               </button>
               <button
-                className="p-2 rounded-md transition-colors text-red-500 hover:bg-red-500/10"
+                className="p-2 rounded-md transition-colors text-black hover:bg-red-500/10"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="القائمة"
               >
@@ -237,7 +237,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                     className="p-2 rounded-md hover:bg-red-500/10 transition-colors"
                     aria-label="إغلاق القائمة"
                   >
-                    <X size={24} className="text-red-500" />
+                    <X size={24} className="text-black" />
                   </button>
                 </div>
 
@@ -253,7 +253,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                       >
                         <Link
                           href={item.href}
-                          className="block text-red-500 hover:text-red-600 hover:bg-red-500/5 transition-colors font-medium py-3 px-4 rounded-md text-lg text-right"
+                          className="block text-black hover:text-red-500 hover:bg-red-500/5 transition-colors font-medium py-3 px-4 rounded-md text-lg text-right"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {item.name}
@@ -263,7 +263,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
 
                     {/* Mobile Categories */}
                     <motion.div custom={1} variants={menuItemVariants} initial="closed" animate="open">
-                      <div className="text-red-500 font-medium py-3 px-4 text-lg text-right border-b border-gray-200">
+                      <div className="text-black font-medium py-3 px-4 text-lg text-right border-b border-gray-200">
                         الفئات
                       </div>
                       <div className="space-y-2 mt-2">

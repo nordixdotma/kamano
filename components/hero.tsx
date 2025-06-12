@@ -12,7 +12,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="flex justify-center w-full mt-10">
+    <div className="flex justify-center w-full mt-10 bg-white">
       <section
         id="home"
         className="relative max-w-7xl w-full overflow-hidden cursor-pointer"
@@ -29,7 +29,7 @@ export default function Hero() {
           <Image
             src="/hero.png"
             alt="متجر الإلكترونيات - أحدث التقنيات والأجهزة"
-            className="object-cover hover:scale-105 transition-transform duration-700"
+            className="object-contain hover:scale-105 transition-transform duration-700"
             priority
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"
