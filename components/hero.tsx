@@ -12,29 +12,31 @@ export default function Hero() {
   }, [])
 
   return (
-    <section
-      id="home"
-      className="relative w-full overflow-hidden cursor-pointer"
-      style={{ height: `calc(100vh - ${headerHeight}px)`, marginTop: `${headerHeight}px` }}
-      onClick={() => {
-        // Scroll to products section when hero is clicked
-        const productsSection = document.getElementById("products")
-        if (productsSection) {
-          productsSection.scrollIntoView({ behavior: "smooth" })
-        }
-      }}
-    >
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero.png"
-          alt="متجر الإلكترونيات - أحدث التقنيات والأجهزة"
-          className="object-cover hover:scale-105 transition-transform duration-700"
-          priority
-          fill
-          sizes="100vw"
-          quality={90}
-        />
-      </div>
-    </section>
+    <div className="flex justify-center w-full mt-10">
+      <section
+        id="home"
+        className="relative max-w-7xl w-full overflow-hidden cursor-pointer"
+        style={{ height: "500px", marginTop: `${headerHeight}px` }}
+        onClick={() => {
+          // Scroll to products section when hero is clicked
+          const productsSection = document.getElementById("products")
+          if (productsSection) {
+            productsSection.scrollIntoView({ behavior: "smooth" })
+          }
+        }}
+      >
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero.png"
+            alt="متجر الإلكترونيات - أحدث التقنيات والأجهزة"
+            className="object-cover hover:scale-105 transition-transform duration-700"
+            priority
+            fill
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            quality={90}
+          />
+        </div>
+      </section>
+    </div>
   )
 }
