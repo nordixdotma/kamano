@@ -108,7 +108,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
 
   const menuItems = [{ name: "الرئيسية", href: "/" }]
 
-  const bannerText = "التوصيل المجاني في المغرب خلال 2-24 ساعة 🔥"
+  const bannerText = "🔥التوصيل مجاني وسريع في شمال المغرب"
 
   return (
     <>
@@ -150,23 +150,31 @@ export default function Header({ forceWhite = false }: HeaderProps) {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-4 space-x-reverse">
-                {/* Mobile Menu Button - Left */}
-                <div className="md:hidden">
-                  <button
-                    type="button"
-                    className={cn(
-                      "p-2 transition-colors",
-                      isScrolled ? "text-[#122f5b] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
-                    )}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="القائمة"
-                    aria-expanded={isMenuOpen}
-                  >
-                    <Menu size={24} />
-                  </button>
-                </div>
+              {/* Mobile Menu Button - Left */}
+              <div className="md:hidden">
+                <button
+                  type="button"
+                  className={cn(
+                    "p-2 transition-colors",
+                    isScrolled ? "text-[#122f5b] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
+                  )}
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  aria-label="القائمة"
+                  aria-expanded={isMenuOpen}
+                >
+                  <Menu size={24} />
+                </button>
+              </div>
 
+              {/* Mobile Logo - Centered */}
+              <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
+                <Link href="/" className="flex items-center">
+                  <img src="/logo.png" alt="شعار الموقع" className="h-10 w-auto transition-opacity duration-300" />
+                </Link>
+              </div>
+
+              {/* Desktop Logo and Navigation Container */}
+              <div className="hidden md:flex items-center space-x-4 space-x-reverse">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                   <img
@@ -244,7 +252,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                     onClick={openCart}
                     className={cn(
                       "relative transition-colors hover:text-[#ffec35]",
-                      isScrolled ? "text-black" : "text-white",
+                      isScrolled ? "text-black" : "text-black",
                     )}
                     aria-label="السلة"
                   >

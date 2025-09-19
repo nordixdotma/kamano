@@ -54,7 +54,7 @@ export default function Footer() {
                   <Phone size={16} className="text-white/60" />
                 </div>
                 <div className="flex items-center justify-start">
-                  <span className="text-white/80 text-sm ml-3">kamano.store@gmail.com</span>
+                  <span className="text-white/80 text-sm ml-3">riadphone.store@gmail.com</span>
                   <Mail size={16} className="text-white/60" />
                 </div>
                 <div className="flex items-start justify-start">
@@ -66,7 +66,7 @@ export default function Footer() {
               {/* Social Icons */}
               <div className="flex space-x-4 space-x-reverse justify-start mt-6">
                 <a
-                  href="https://facebook.com/kamano.store"
+                  href="https://facebook.com/riadphone.store"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-md border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"
@@ -75,7 +75,7 @@ export default function Footer() {
                   <Facebook size={18} className="text-white" />
                 </a>
                 <a
-                  href="https://instagram.com/kamano.store"
+                  href="https://instagram.com/riadphone.store"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-md border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"

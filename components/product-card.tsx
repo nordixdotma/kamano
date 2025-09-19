@@ -34,7 +34,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           >
-            <span className="px-2 py-1 bg-primary text-[#122f5b] rounded-md text-xs font-medium hover:bg-gray-100 transition-colors">
+            <span className="px-2 py-2 bg-primary text-[#122f5b] rounded-sm text-xs font-medium0 transition-colors">
               عرض التفاصيل
             </span>
           </div>
