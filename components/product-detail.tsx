@@ -112,7 +112,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               className="absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors duration-200"
               aria-label="الصورة السابقة"
             >
-              <ArrowLeft size={18} className="text-red-500" />
+              <ArrowLeft size={18} className="text-[#ffec35]" />
             </button>
 
             <button
@@ -120,7 +120,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               className="absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors duration-200"
               aria-label="الصورة التالية"
             >
-              <ArrowRight size={18} className="text-red-500" />
+              <ArrowRight size={18} className="text-[#ffec35]" />
             </button>
 
             {/* Main Image */}
@@ -145,7 +145,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </AnimatePresence>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-xs font-medium text-red-500">
+            <div className="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-xs font-medium text-[#ffec35]">
               {selectedImage + 1} / {product.images.length}
             </div>
           </div>
@@ -160,8 +160,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 onClick={() => handleThumbnailClick(index)}
                 className={`relative overflow-hidden rounded-lg ${
                   selectedImage === index
-                    ? "ring-2 ring-red-500 ring-offset-2"
-                    : "ring-1 ring-gray-200 hover:ring-red-500/50"
+                    ? "ring-2 ring-[#ffec35] ring-offset-2"
+                    : "ring-1 ring-gray-200 hover:ring-[#ffec35]/50"
                 } w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 transition-all duration-200 flex-shrink-0`}
               >
                 <Image
@@ -181,7 +181,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {/* Product Name, Brand and Pricing */}
           <div className="border-b border-gray-100 pb-6">
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-500 mb-2 text-right">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#ffec35] mb-2 text-right">
                 {product.name}
               </h1>
 
@@ -196,7 +196,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               {/* Pricing */}
               <div className="text-right mb-3">
                 <p className="text-lg text-gray-400 line-through">{product.oldPrice}</p>
-                <p className="text-2xl sm:text-3xl font-bold text-red-500">{product.newPrice}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#ffec35]">{product.newPrice}</p>
                 <p className="text-sm text-green-600 font-medium">
                   وفر{" "}
                   {Number.parseInt(product.oldPrice.replace(/\D/g, "")) -
@@ -248,7 +248,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     onClick={() => setSelectedSize(size)}
                     className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
                       selectedSize === size
-                        ? "bg-red-500 text-white border-red-500"
+                        ? "bg-[#ffec35] text-black border-[#ffec35]"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                     }`}
                     disabled={!product.inStock}
@@ -274,7 +274,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     فضي: "#c0c0c0",
                     ذهبي: "#ffd700",
                     أزرق: "#4a90e2",
-                    أحمر: "#e74c3c",
+                    أحمر: "#ffec35",
                     أخضر: "#27ae60",
                     "رمادي فضائي": "#8c8c8c",
                     "تيتانيوم طبيعي": "#d4d4d4",
@@ -292,7 +292,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       key={color}
                       onClick={() => setSelectedColor(color)}
                       className={`w-8 h-8 rounded-full border-2 transition-all ${
-                        selectedColor === color ? "ring-2 ring-red-500 ring-offset-2" : "ring-1 ring-gray-200"
+                        selectedColor === color ? "ring-2 ring-[#ffec35] ring-offset-2" : "ring-1 ring-gray-200"
                       }`}
                       style={{ backgroundColor: bgColor }}
                       aria-label={`اختيار اللون ${color}`}
@@ -306,7 +306,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
           )}
 
-          {/* Product Description - No tabs anymore */}
           {/* Shipping Information */}
           <div className="flex items-center border-l-4 border-green-500 pl-4 py-2 bg-green-100">
             <Truck size={18} className="text-green-500 mx-3" />
@@ -369,7 +368,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         whileTap={{ scale: 0.98 }}
                         onClick={handleAddToCart}
                         disabled={!product.inStock}
-                        className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center hover:bg-red-600 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="flex-1 py-3 px-4 bg-[#ffec35] text-black rounded-md flex items-center justify-center hover:bg-[#e6d42f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed font-bold"
                       >
                         <ShoppingBag size={18} className="ml-2" />
                         {product.inStock ? "إضافة للسلة" : "غير متوفر"}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Menu, X, ShoppingBag } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { useCart } from "@/lib/cart-context"
 import { products } from "@/lib/products"
@@ -12,52 +13,50 @@ interface HeaderProps {
 }
 
 export default function Header({ forceWhite = false }: HeaderProps) {
-  const { totalItems, openCart } = useCart()
+  const [isScrolled, setIsScrolled] = useState(forceWhite)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [windowHeight, setWindowHeight] = useState(0)
+  const [showBanner, setShowBanner] = useState(true)
   const headerRef = useRef<HTMLElement>(null)
+  const { totalItems, openCart } = useCart()
 
   // Get unique categories
   const categories = [...new Set(products.map((p) => p.category))]
 
-  // Handle scroll events to hide/show scrolling banner
+  useEffect(() => {
+    const updateDimensions = () => {
+      setWindowHeight(window.innerHeight)
+    }
+
+    updateDimensions()
+    window.addEventListener("resize", updateDimensions)
+    return () => window.removeEventListener("resize", updateDimensions)
+  }, [])
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMenuOpen])
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      const scrollY = window.scrollY
+      setIsScrolled(forceWhite || scrollY > 10)
+      setShowBanner(scrollY < 50) // Hide banner when scrolling down
     }
 
     window.addEventListener("scroll", handleScroll)
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  // Scroll locking for mobile menu
-  useEffect(() => {
-    if (isMenuOpen) {
-      const scrollY = window.scrollY
-      document.body.style.position = "fixed"
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = "100%"
-      document.body.style.overflow = "hidden"
-    } else {
-      const scrollY = document.body.style.top
-      document.body.style.position = ""
-      document.body.style.top = ""
-      document.body.style.width = ""
-      document.body.style.overflow = ""
-      if (scrollY) {
-        window.scrollTo(0, Number.parseInt(scrollY || "0", 10) * -1)
-      }
-    }
-
-    return () => {
-      document.body.style.position = ""
-      document.body.style.top = ""
-      document.body.style.width = ""
-      document.body.style.overflow = ""
-    }
-  }, [isMenuOpen])
+  }, [forceWhite])
 
   // Close menu when window is resized to desktop size
   useEffect(() => {
@@ -72,16 +71,16 @@ export default function Header({ forceWhite = false }: HeaderProps) {
   }, [])
 
   const menuVariants = {
-    closed: { x: "100%", opacity: 0 },
+    closed: { x: "-100%", opacity: 0 },
     open: {
       x: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 30 },
+      transition: { type: "spring" as const, stiffness: 300, damping: 30 },
     },
     exit: {
-      x: "100%",
+      x: "-100%",
       opacity: 0,
-      transition: { ease: "easeInOut", duration: 0.3 },
+      transition: { ease: "easeInOut" as const, duration: 0.3 },
     },
   }
 
@@ -94,249 +93,252 @@ export default function Header({ forceWhite = false }: HeaderProps) {
     }),
   }
 
+  const bannerVariants = {
+    visible: {
+      height: "auto",
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut" as const },
+    },
+    hidden: {
+      height: 0,
+      opacity: 0,
+      transition: { duration: 0.5, ease: "easeInOut" as const },
+    },
+  }
+
   const menuItems = [{ name: "الرئيسية", href: "/" }]
 
-  const marqueeText = "عرض خاص: التوصيل بالمجان في كل أنحاء المغرب، والدفع عند الاستلام، اسرع واطلب الآن"
+  const bannerText = "التوصيل المجاني في المغرب خلال 2-24 ساعة 🔥"
 
   return (
     <>
-      {/* Simple Scrolling Banner - Always visible */}
-      {!isScrolled && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-red-500 py-3">
-          <div className="overflow-hidden">
-            <div className="animate-scroll text-white text-sm md:text-base font-bold tracking-wider whitespace-nowrap">
-              {marqueeText}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Header - Dynamic positioning based on scroll */}
-      <header
-        ref={headerRef}
-        className={`fixed left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-md py-3 transition-all duration-300 ${
-          isScrolled ? "top-0" : "top-12"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <div className="w-32 h-8 md:w-40 md:h-10 relative">
-                <img
-                  src="/logo.png"
-                  alt="Website Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-base relative group transition-colors font-medium text-black hover:text-red-500"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-red-500"></span>
-                </Link>
-              ))}
-
-              {/* Direct Category Links */}
-              {categories.map((category) => (
-                <Link
-                  key={category}
-                  href={`/category/${encodeURIComponent(category)}`}
-                  className="text-base relative group transition-colors font-medium text-black hover:text-red-500"
-                >
-                  {category}
-                  <span className="absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-red-500"></span>
-                </Link>
-              ))}
-            </nav>
-
-            {/* Desktop Action Icons */}
-            <div className="hidden md:flex items-center">
-              <button
-                className="transition-colors relative text-black hover:text-red-500"
-                onClick={openCart}
-                aria-label="السلة"
-              >
-                <ShoppingBag size={20} />
-                <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
-                  {totalItems}
-                </span>
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="flex items-center space-x-4 space-x-reverse md:hidden">
-              <button
-                className="relative transition-colors text-black hover:text-red-500"
-                onClick={openCart}
-                aria-label="السلة"
-              >
-                <ShoppingBag size={20} />
-                <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
-                  {totalItems}
-                </span>
-              </button>
-              <button
-                className="p-2 rounded-md transition-colors text-black hover:bg-red-500/10"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="القائمة"
-              >
-                <Menu size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Navigation - Full screen height with higher z-index */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
+      <header ref={headerRef} className="fixed top-0 left-0 right-0 z-40">
+        <motion.div
+          variants={bannerVariants}
+          animate={showBanner ? "visible" : "hidden"}
+          className="bg-black text-white overflow-hidden"
+        >
+          <div className="relative h-8 flex items-center">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed z-[80] md:hidden"
-              style={{
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                height: "100vh",
-                width: "100vw",
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
+              className="flex whitespace-nowrap"
+              animate={{
+                x: [0, 1000], // scrolls left → right
               }}
-              onClick={() => setIsMenuOpen(false)}
-            />
-
-            <motion.div
-              initial="closed"
-              animate="open"
-              exit="exit"
-              variants={menuVariants}
-              className="fixed right-0 w-4/5 max-w-sm bg-white shadow-xl z-[90] md:hidden"
-              style={{
-                top: 0,
-                bottom: 0,
-                height: "100vh",
+              transition={{
+                x: {
+                  repeat: Number.POSITIVE_INFINITY,
+                  repeatType: "loop",
+                  duration: 15,
+                  ease: "linear",
+                },
               }}
             >
-              <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center p-5 border-b border-gray-100">
-                  <h2 className="text-xl font-bold text-red-500">القائمة</h2>
+              {Array.from({ length: 10 }).map((_, index) => (
+                <div key={index} className="flex items-center px-8">
+                  <span className="text-sm font-medium">{bannerText}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+
+        <div
+          className={cn(
+            "transition-all duration-300 ease-in-out",
+            isScrolled ? "bg-white backdrop-blur-md shadow-sm py-2" : "bg-transparent py-5 md:py-6",
+          )}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-4 space-x-reverse">
+                {/* Mobile Menu Button - Left */}
+                <div className="md:hidden">
                   <button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="p-2 rounded-md hover:bg-red-500/10 transition-colors"
-                    aria-label="إغلاق القائمة"
+                    className={cn(
+                      "p-2 transition-colors",
+                      isScrolled ? "text-[#ffec35] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
+                    )}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="القائمة"
                   >
-                    <X size={24} className="text-black" />
+                    <Menu size={24} />
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto py-6 px-5">
-                  <nav className="space-y-6">
-                    {menuItems.map((item, i) => (
-                      <motion.div
-                        key={item.name}
-                        custom={i}
-                        variants={menuItemVariants}
-                        initial="closed"
-                        animate="open"
-                      >
-                        <Link
-                          href={item.href}
-                          className="block text-black hover:text-red-500 hover:bg-red-500/5 transition-colors font-medium py-3 px-4 rounded-md text-lg text-right"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      </motion.div>
-                    ))}
+                {/* Logo */}
+                <Link href="/" className="flex items-center">
+                  <img
+                    src="/logo.jpg"
+                    alt="شعار الموقع"
+                    className="h-10 md:h-14 w-auto transition-opacity duration-300"
+                  />
+                </Link>
+              </div>
 
-                    {/* Mobile Categories */}
-                    <motion.div custom={1} variants={menuItemVariants} initial="closed" animate="open">
-                      <div className="text-black font-medium py-3 px-4 text-lg text-right border-b border-gray-200">
-                        الفئات
-                      </div>
-                      <div className="space-y-2 mt-2">
-                        {categories.map((category) => (
-                          <Link
-                            key={category}
-                            href={`/category/${encodeURIComponent(category)}`}
-                            className="block text-gray-600 hover:text-red-600 hover:bg-red-500/5 transition-colors py-2 px-6 rounded-md text-right"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {category}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </nav>
+              <nav className="hidden md:flex items-center space-x-8 space-x-reverse flex-1 justify-center">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "text-base relative group transition-colors font-medium hover:text-[#ffec35]",
+                      isScrolled ? "text-black" : "text-black",
+                    )}
+                  >
+                    {item.name}
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-[#ffec35]",
+                      )}
+                    />
+                  </Link>
+                ))}
+
+                {/* Direct Category Links */}
+                {categories.map((category) => (
+                  <Link
+                    key={category}
+                    href={`/category/${encodeURIComponent(category)}`}
+                    className={cn(
+                      "text-base relative group transition-colors font-medium hover:text-[#ffec35]",
+                      isScrolled ? "text-black" : "text-black",
+                    )}
+                  >
+                    {category}
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 right-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-[#ffec35]",
+                      )}
+                    />
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="flex items-center space-x-4 space-x-reverse">
+                {/* Desktop Action Icons - Shopping Bag */}
+                <div className="hidden md:flex items-center space-x-4 space-x-reverse">
+                  <button
+                    onClick={openCart}
+                    className={cn(
+                      "transition-colors relative hover:text-[#ffec35]",
+                      isScrolled ? "text-black" : "text-black",
+                    )}
+                    aria-label="السلة"
+                  >
+                    <ShoppingBag size={20} />
+                    {totalItems > 0 && (
+                      <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#ffec35] text-black text-xs flex items-center justify-center cart-counter font-bold">
+                        {totalItems}
+                      </span>
+                    )}
+                  </button>
                 </div>
 
-                <div className="p-5 border-t border-gray-100">
-                  <div className="flex space-x-4 space-x-reverse justify-center">
-                    <a
-                      href="https://facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center hover:bg-red-500/20 transition-colors"
-                      aria-label="فيسبوك"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-red-500"
-                      >
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a
-                      href="https://instagram.com/tierrablanca.ma"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center hover:bg-red-500/20 transition-colors"
-                      aria-label="إنستغرام"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-red-500"
-                      >
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                      </svg>
-                    </a>
-                  </div>
+                {/* Mobile Icons */}
+                <div className="flex items-center space-x-3 space-x-reverse md:hidden">
+                  <button
+                    onClick={openCart}
+                    className={cn(
+                      "relative transition-colors hover:text-[#ffec35]",
+                      isScrolled ? "text-black" : "text-white",
+                    )}
+                    aria-label="السلة"
+                  >
+                    <ShoppingBag size={20} />
+                    {totalItems > 0 && (
+                      <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#ffec35] text-black text-xs flex items-center justify-center cart-counter font-bold">
+                        {totalItems}
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.5 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black z-50 md:hidden"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ height: windowHeight }}
+              />
+
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="exit"
+                variants={menuVariants}
+                className="fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-white shadow-xl z-50 md:hidden"
+                style={{ height: windowHeight }}
+              >
+                <div className="flex flex-col h-full">
+                  {/* Menu Header */}
+                  <div className="flex justify-between items-center p-5 border-b border-gray-100">
+                    <img src="/logo.jpg" alt="شعار الموقع" className="h-12 w-auto" />
+                    <button
+                      onClick={() => setIsMenuOpen(false)}
+                      className="p-2 hover:bg-[#ffec35]/10 transition-colors"
+                      aria-label="إغلاق القائمة"
+                    >
+                      <X size={24} className="text-[#ffec35]" />
+                    </button>
+                  </div>
+
+                  {/* Menu Items */}
+                  <div className="flex-1 overflow-y-auto py-6 px-5">
+                    <nav className="space-y-6">
+                      {menuItems.map((item, i) => (
+                        <motion.div
+                          key={item.name}
+                          custom={i}
+                          variants={menuItemVariants}
+                          initial="closed"
+                          animate="open"
+                        >
+                          <Link
+                            href={item.href}
+                            className="block text-[#ffec35] hover:text-[#e6d42f] hover:bg-[#ffec35]/5 transition-colors font-medium py-3 px-0 text-lg text-right"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.div>
+                      ))}
+
+                      {/* Mobile Categories */}
+                      <motion.div custom={menuItems.length} variants={menuItemVariants} initial="closed" animate="open">
+                        <div className="text-black font-medium py-3 px-0 text-lg text-right border-b border-gray-200">
+                          الفئات
+                        </div>
+                        <div className="space-y-2 mt-2">
+                          {categories.map((category) => (
+                            <Link
+                              key={category}
+                              href={`/category/${encodeURIComponent(category)}`}
+                              className="block text-gray-600 hover:text-[#ffec35] hover:bg-[#ffec35]/5 transition-colors py-2 px-4 rounded-md text-right"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {category}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </nav>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </header>
     </>
   )
 }

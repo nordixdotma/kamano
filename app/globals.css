@@ -21,12 +21,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ef4444;
+  background: #ffec35;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #dc2626;
+  background: #e6d42f;
 }
 
 /* Updated scrolling animation for opposite direction */

@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <motion.div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+        className="group relative bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-red-500 transition-all duration-300 h-full flex flex-col"
       >
         {/* Image container with fixed aspect ratio - smaller for 4 columns */}
         <div className="relative h-32 sm:h-40 md:h-48 lg:h-56 overflow-hidden">

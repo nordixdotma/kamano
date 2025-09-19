@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Search, X, ChevronDown, Smartphone, Tag, Grid3X3 } from "lucide-react"
+import { Search, X, ChevronDown, Smartphone, DollarSign, Grid3X3, Clock } from "lucide-react"
 
 interface FilterOptions {
   categories: string[]
@@ -377,7 +377,7 @@ export default function ProductFilter({
             </div>
             <div className="flex items-center">
               <span className="truncate text-xs md:text-sm">{filters.price}</span>
-              <Tag className="w-4 h-4 mr-2 text-gray-500" />
+              <DollarSign className="w-4 h-4 mr-2 text-gray-500" />
             </div>
           </button>
 
@@ -422,7 +422,7 @@ export default function ProductFilter({
             </div>
             <div className="flex items-center">
               <span className="truncate text-xs md:text-sm">{filters.sort}</span>
-              <Tag className="w-4 h-4 mr-2 text-gray-500" />
+              <Clock className="w-4 h-4 mr-2 text-gray-500" />
             </div>
           </button>
 
