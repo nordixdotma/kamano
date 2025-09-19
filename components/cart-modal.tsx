@@ -144,7 +144,7 @@ export default function CartModal() {
         >
           {/* Header */}
           <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-white">
-            <h2 className="text-lg font-serif font-semibold text-red-500 flex items-center">
+            <h2 className="text-lg font-serif font-semibold text-[#122f5b] flex items-center">
               <ShoppingBag size={18} className="mx-2" />
               {isCheckingOut ? "معلومات العميل" : `سلة التسوق (${totalItems})`}
             </h2>
@@ -181,11 +181,11 @@ export default function CartModal() {
                       onChange={handleInputChange}
                       placeholder="اسمك الكامل"
                       className={`w-full px-3 py-2 text-sm border ${
-                        formErrors.fullName ? "border-red-500" : "border-gray-300"
-                      } rounded-md focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 text-right`}
+                        formErrors.fullName ? "border-[#122f5b]" : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#122f5b] focus:border-[#122f5b] text-right`}
                     />
                     {formErrors.fullName && (
-                      <p className="mt-1 text-xs text-red-500 text-right">{formErrors.fullName}</p>
+                      <p className="mt-1 text-xs text-[#122f5b] text-right">{formErrors.fullName}</p>
                     )}
                   </div>
 
@@ -202,10 +202,10 @@ export default function CartModal() {
                         onChange={handleInputChange}
                         placeholder="your@email.com"
                         className={`w-full px-3 py-2 text-sm border ${
-                          formErrors.email ? "border-red-500" : "border-gray-300"
-                        } rounded-md focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 text-right`}
+                          formErrors.email ? "border-[#122f5b]" : "border-gray-300"
+                        } rounded-md focus:outline-none focus:ring-1 focus:ring-[#122f5b] focus:border-[#122f5b] text-right`}
                       />
-                      {formErrors.email && <p className="mt-1 text-xs text-red-500 text-right">{formErrors.email}</p>}
+                      {formErrors.email && <p className="mt-1 text-xs text-[#122f5b] text-right">{formErrors.email}</p>}
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 text-right">
@@ -219,10 +219,10 @@ export default function CartModal() {
                         onChange={handleInputChange}
                         placeholder="+212 XXXXXXXXX"
                         className={`w-full px-3 py-2 text-sm border ${
-                          formErrors.phone ? "border-red-500" : "border-gray-300"
-                        } rounded-md focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 text-right`}
+                          formErrors.phone ? "border-[#122f5b]" : "border-gray-300"
+                        } rounded-md focus:outline-none focus:ring-1 focus:ring-[#122f5b] focus:border-[#122f5b] text-right`}
                       />
-                      {formErrors.phone && <p className="mt-1 text-xs text-red-500 text-right">{formErrors.phone}</p>}
+                      {formErrors.phone && <p className="mt-1 text-xs text-[#122f5b] text-right">{formErrors.phone}</p>}
                     </div>
                   </div>
 
@@ -238,10 +238,10 @@ export default function CartModal() {
                       onChange={handleInputChange}
                       placeholder="مدينتك"
                       className={`w-full px-3 py-2 text-sm border ${
-                        formErrors.city ? "border-red-500" : "border-gray-300"
-                      } rounded-md focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 text-right`}
+                        formErrors.city ? "border-[#122f5b]" : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#122f5b] focus:border-[#122f5b] text-right`}
                     />
-                    {formErrors.city && <p className="mt-1 text-xs text-red-500 text-right">{formErrors.city}</p>}
+                    {formErrors.city && <p className="mt-1 text-xs text-[#122f5b] text-right">{formErrors.city}</p>}
                   </div>
 
                   <div>
@@ -256,17 +256,19 @@ export default function CartModal() {
                       onChange={handleInputChange}
                       placeholder="عنوانك الكامل للتوصيل"
                       className={`w-full px-3 py-2 text-sm border ${
-                        formErrors.address ? "border-red-500" : "border-gray-300"
-                      } rounded-md focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 text-right`}
+                        formErrors.address ? "border-[#122f5b]" : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#122f5b] focus:border-[#122f5b] text-right`}
                     />
-                    {formErrors.address && <p className="mt-1 text-xs text-red-500 text-right">{formErrors.address}</p>}
+                    {formErrors.address && (
+                      <p className="mt-1 text-xs text-[#122f5b] text-right">{formErrors.address}</p>
+                    )}
                   </div>
                 </form>
               </div>
 
               <div className="border-t border-gray-200 p-4 bg-white">
                 <div className="flex justify-between font-medium mb-3">
-                  <span className="text-lg text-red-500">{totalPrice.toFixed(2)} درهم</span>
+                  <span className="text-lg text-[#122f5b]">{totalPrice.toFixed(2)} درهم</span>
                   <span>المجموع:</span>
                 </div>
                 <div className="flex space-x-3 space-x-reverse">
@@ -282,7 +284,7 @@ export default function CartModal() {
                     type="button"
                     onClick={handleSubmitOrder}
                     disabled={isSubmitting}
-                    className="flex-1 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-medium disabled:opacity-50 flex items-center justify-center"
+                    className="flex-1 py-2 bg-[#122f5b] text-white rounded-md hover:bg-[#0f1f3d] transition-colors font-medium disabled:opacity-50 flex items-center justify-center"
                   >
                     {isSubmitting ? (
                       <>
@@ -340,7 +342,7 @@ export default function CartModal() {
 
                       <div className="mr-4 flex flex-1 flex-col">
                         <div className="flex justify-between text-base font-medium text-gray-900">
-                          <p className="mr-2 text-sm font-semibold text-red-500 whitespace-nowrap">{item.price}</p>
+                          <p className="mr-2 text-sm font-semibold text-[#122f5b] whitespace-nowrap">{item.price}</p>
                           <h3 className="text-sm font-medium truncate max-w-[120px] sm:max-w-[180px] text-right">
                             {item.name}
                           </h3>
@@ -362,7 +364,7 @@ export default function CartModal() {
                         <div className="flex items-center justify-between mt-auto">
                           <button
                             onClick={() => removeItem(item.id, item.size, item.color)}
-                            className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors"
+                            className="text-[#122f5b] hover:text-[#0f1f3d] p-1 hover:bg-[#122f5b]/10 rounded-full transition-colors"
                             aria-label="حذف المنتج"
                           >
                             <Trash2 size={16} />
@@ -394,14 +396,14 @@ export default function CartModal() {
 
               <div className="border-t border-gray-200 p-4 bg-white mt-auto">
                 <div className="flex justify-between font-medium mb-3">
-                  <span className="text-lg text-red-500">{totalPrice.toFixed(2)} درهم</span>
+                  <span className="text-lg text-[#122f5b]">{totalPrice.toFixed(2)} درهم</span>
                   <span>المجموع:</span>
                 </div>
 
                 <div className="flex gap-2">
                   <button
                     onClick={handleCheckout}
-                    className="flex-1 py-2.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-medium"
+                    className="flex-1 py-2.5 bg-[#122f5b] text-white rounded-md hover:bg-[#0f1f3d] transition-colors font-medium"
                   >
                     إتمام الطلب
                   </button>

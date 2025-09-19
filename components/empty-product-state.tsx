@@ -19,10 +19,10 @@ export default function EmptyProductState({
         compact ? "py-8" : "py-16"
       }`}
     >
-      <div className="bg-red-500/10 p-4 rounded-full mb-4">
-        <ShoppingBag className="w-8 h-8 text-red-500" />
+      <div className="bg-[#122f5b]/10 p-4 rounded-full mb-4">
+        <ShoppingBag className="w-8 h-8 text-[#122f5b]" />
       </div>
-      <h3 className="text-xl font-serif font-semibold text-red-500 mb-2">{title}</h3>
+      <h3 className="text-xl font-serif font-semibold text-[#122f5b] mb-2">{title}</h3>
       <p className="text-gray-600 text-center max-w-md mb-6 px-4">{message}</p>
     </div>
   )

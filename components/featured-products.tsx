@@ -94,8 +94,8 @@ export default function FeaturedProducts({ categoryFilter }: FeaturedProductsPro
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-500 mb-3">{sectionTitle}</h2>
-          <div className="w-16 sm:w-24 h-1 bg-red-500 mx-auto mb-4"></div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#122f5b] mb-3">{sectionTitle}</h2>
+          <div className="w-16 sm:w-24 h-1 bg-[#122f5b] mx-auto mb-4"></div>
           <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
             اكتشف أحدث التقنيات والأجهزة الإلكترونية بأفضل الأسعار
           </p>

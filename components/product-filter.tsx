@@ -215,14 +215,14 @@ export default function ProductFilter({
           <input
             type="text"
             placeholder="ابحث عن المنتجات..."
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-700 transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#122f5b] hover:text-[#0f1f3d] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -231,7 +231,7 @@ export default function ProductFilter({
         {hasActiveFilters && (
           <button
             onClick={resetFilters}
-            className="bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 font-medium rounded-lg text-sm px-4 py-2.5 transition-colors flex items-center justify-center w-2/12"
+            className="bg-primary text-[#122f5b] hover:bg-gray-100 hover:text-[#0f1f3d] font-medium rounded-lg text-sm px-4 py-2.5 transition-colors flex items-center justify-center w-2/12"
           >
             <X className="w-4 h-4 mr-1.5" />
             <span className="hidden md:inline">مسح الكل</span>
@@ -252,8 +252,8 @@ export default function ProductFilter({
           <button
             onClick={() => toggleDropdown("category")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.category !== "جميع الفئات" ? "border-red-500 bg-red-50" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors`}
+              filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
+            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
           >
             <div className="flex items-center">
               {filters.category !== "جميع الفئات" && (
@@ -262,7 +262,7 @@ export default function ProductFilter({
                     e.stopPropagation()
                     resetFilter("category")
                   }}
-                  className="ml-1 text-red-500 hover:text-red-700 cursor-pointer"
+                  className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </div>
@@ -279,7 +279,7 @@ export default function ProductFilter({
             <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
               <button
                 className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                  filters.category === "جميع الفئات" ? "bg-red-50 font-medium" : ""
+                  filters.category === "جميع الفئات" ? "bg-[#122f5b]/10 font-medium" : ""
                 }`}
                 onClick={() => setFilter("category", "جميع الفئات")}
               >
@@ -289,7 +289,7 @@ export default function ProductFilter({
                 <button
                   key={category}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                    filters.category === category ? "bg-red-50 font-medium" : ""
+                    filters.category === category ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
                   onClick={() => setFilter("category", category)}
                 >
@@ -305,8 +305,8 @@ export default function ProductFilter({
           <button
             onClick={() => toggleDropdown("brand")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.brand !== "جميع العلامات" ? "border-red-500 bg-red-50" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors`}
+              filters.brand !== "جميع العلامات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
+            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
           >
             <div className="flex items-center">
               {filters.brand !== "جميع العلامات" && (
@@ -315,7 +315,7 @@ export default function ProductFilter({
                     e.stopPropagation()
                     resetFilter("brand")
                   }}
-                  className="ml-1 text-red-500 hover:text-red-700 cursor-pointer"
+                  className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </div>
@@ -332,7 +332,7 @@ export default function ProductFilter({
             <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
               <button
                 className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                  filters.brand === "جميع العلامات" ? "bg-red-50 font-medium" : ""
+                  filters.brand === "جميع العلامات" ? "bg-[#122f5b]/10 font-medium" : ""
                 }`}
                 onClick={() => setFilter("brand", "جميع العلامات")}
               >
@@ -342,7 +342,7 @@ export default function ProductFilter({
                 <button
                   key={brand}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                    filters.brand === brand ? "bg-red-50 font-medium" : ""
+                    filters.brand === brand ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
                   onClick={() => setFilter("brand", brand)}
                 >
@@ -358,8 +358,8 @@ export default function ProductFilter({
           <button
             onClick={() => toggleDropdown("price")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.price !== "جميع الأسعار" ? "border-red-500 bg-red-50" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors`}
+              filters.price !== "جميع الأسعار" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
+            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
           >
             <div className="flex items-center">
               {filters.price !== "جميع الأسعار" && (
@@ -368,7 +368,7 @@ export default function ProductFilter({
                     e.stopPropagation()
                     resetFilter("price")
                   }}
-                  className="ml-1 text-red-500 hover:text-red-700 cursor-pointer"
+                  className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </div>
@@ -387,7 +387,7 @@ export default function ProductFilter({
                 <button
                   key={price}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                    filters.price === price ? "bg-red-50 font-medium" : ""
+                    filters.price === price ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
                   onClick={() => setFilter("price", price)}
                 >
@@ -403,8 +403,8 @@ export default function ProductFilter({
           <button
             onClick={() => toggleDropdown("sort")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.sort !== "الأحدث" ? "border-red-500 bg-red-50" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors`}
+              filters.sort !== "الأحدث" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
+            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
           >
             <div className="flex items-center">
               {filters.sort !== "الأحدث" && (
@@ -413,7 +413,7 @@ export default function ProductFilter({
                     e.stopPropagation()
                     resetFilter("sort")
                   }}
-                  className="ml-1 text-red-500 hover:text-red-700 cursor-pointer"
+                  className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </div>
@@ -432,7 +432,7 @@ export default function ProductFilter({
                 <button
                   key={sort}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                    filters.sort === sort ? "bg-red-50 font-medium" : ""
+                    filters.sort === sort ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
                   onClick={() => setFilter("sort", sort)}
                 >

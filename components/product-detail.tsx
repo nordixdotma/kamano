@@ -181,7 +181,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {/* Product Name, Brand and Pricing */}
           <div className="border-b border-gray-100 pb-6">
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#ffec35] mb-2 text-right">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#122f5b] mb-2 text-right">
                 {product.name}
               </h1>
 
@@ -196,7 +196,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               {/* Pricing */}
               <div className="text-right mb-3">
                 <p className="text-lg text-gray-400 line-through">{product.oldPrice}</p>
-                <p className="text-2xl sm:text-3xl font-bold text-[#ffec35]">{product.newPrice}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#122f5b]">{product.newPrice}</p>
                 <p className="text-sm text-green-600 font-medium">
                   وفر{" "}
                   {Number.parseInt(product.oldPrice.replace(/\D/g, "")) -
@@ -214,7 +214,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   متوفر في المخزون
                 </p>
               ) : (
-                <p className="text-red-500 text-sm flex items-center justify-end">
+                <p className="text-[#122f5b] text-sm flex items-center justify-end">
                   <span className="ml-1">•</span>
                   غير متوفر
                 </p>
