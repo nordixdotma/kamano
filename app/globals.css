@@ -45,6 +45,30 @@ body {
   }
 }
 
+/* Added CSS classes to replace inline styles */
+.hero-section-margin {
+  margin-top: 48px;
+}
+
+@media (max-width: 1024px) {
+  .hero-section-margin {
+    margin-top: 96px;
+  }
+}
+
+.cart-modal-container {
+  max-height: calc(100vh - 2rem);
+}
+
+.cart-items-container {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.mobile-menu-height {
+  height: 100vh;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

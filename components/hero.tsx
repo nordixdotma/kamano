@@ -1,23 +1,12 @@
 "use client"
 import Image from "next/image"
-import { useEffect, useState } from "react"
 
 export default function Hero() {
-  const [headerHeight, setHeaderHeight] = useState(0)
-
-  useEffect(() => {
-    // Calculate header height (banner + header)
-    setHeaderHeight(96)
-  }, [])
-
-  const marginTop = typeof window !== "undefined" && window.innerWidth > 1024 ? 48 : headerHeight;
-
   return (
     <div className="flex justify-center w-full bg-white">
       <section
         id="home"
-        className="relative max-w-7xl w-full overflow-hidden cursor-pointer"
-        style={{ marginTop: `${marginTop}px` }}
+        className="relative max-w-7xl w-full overflow-hidden cursor-pointer hero-section-margin"
         onClick={() => {
           // Scroll to products section when hero is clicked
           const productsSection = document.getElementById("products")

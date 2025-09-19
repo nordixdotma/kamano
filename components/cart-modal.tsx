@@ -25,9 +25,9 @@ export default function CartModal() {
   // Set fixed height for cart items container when there are 4+ items
   useEffect(() => {
     if (cartItemsRef.current && items.length >= 4) {
-      cartItemsRef.current.style.maxHeight = "350px"
+      cartItemsRef.current.className = cartItemsRef.current.className + " cart-items-container"
     } else if (cartItemsRef.current) {
-      cartItemsRef.current.style.maxHeight = "none"
+      cartItemsRef.current.className = cartItemsRef.current.className.replace(" cart-items-container", "")
     }
   }, [items.length, isCartOpen])
 
@@ -138,8 +138,7 @@ export default function CartModal() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden flex flex-col"
-          style={{ maxHeight: "calc(100vh - 2rem)" }}
+          className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden flex flex-col cart-modal-container"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
@@ -149,6 +148,7 @@ export default function CartModal() {
               {isCheckingOut ? "معلومات العميل" : `سلة التسوق (${totalItems})`}
             </h2>
             <button
+              type="button"
               onClick={closeCart}
               className="p-1 rounded-full hover:bg-gray-100 transition-colors"
               aria-label="إغلاق السلة"
@@ -319,14 +319,7 @@ export default function CartModal() {
             </>
           ) : (
             <>
-              <div
-                ref={cartItemsRef}
-                className="overflow-y-auto"
-                style={{
-                  maxHeight: items.length >= 4 ? "350px" : "none",
-                  overflowY: items.length >= 4 ? "auto" : "visible",
-                }}
-              >
+              <div ref={cartItemsRef} className="overflow-y-auto">
                 <ul className="divide-y divide-gray-200">
                   {items.map((item) => (
                     <li key={`${item.id}-${item.size}-${item.color}`} className="p-4 flex">
@@ -363,6 +356,7 @@ export default function CartModal() {
 
                         <div className="flex items-center justify-between mt-auto">
                           <button
+                            type="button"
                             onClick={() => removeItem(item.id, item.size, item.color)}
                             className="text-[#122f5b] hover:text-[#0f1f3d] p-1 hover:bg-[#122f5b]/10 rounded-full transition-colors"
                             aria-label="حذف المنتج"
@@ -372,6 +366,7 @@ export default function CartModal() {
 
                           <div className="flex items-center border border-gray-300 rounded-md">
                             <button
+                              type="button"
                               onClick={() => updateQuantity(item.id, item.quantity + 1, item.size, item.color)}
                               className="p-1 hover:bg-gray-100"
                               aria-label="زيادة الكمية"
@@ -380,6 +375,7 @@ export default function CartModal() {
                             </button>
                             <span className="px-3 text-sm font-medium">{item.quantity}</span>
                             <button
+                              type="button"
                               onClick={() => updateQuantity(item.id, item.quantity - 1, item.size, item.color)}
                               className="p-1 hover:bg-gray-100"
                               aria-label="تقليل الكمية"
@@ -402,6 +398,7 @@ export default function CartModal() {
 
                 <div className="flex gap-2">
                   <button
+                    type="button"
                     onClick={handleCheckout}
                     className="flex-1 py-2.5 bg-[#122f5b] text-white rounded-md hover:bg-[#0f1f3d] transition-colors font-medium"
                   >
@@ -409,8 +406,10 @@ export default function CartModal() {
                   </button>
 
                   <button
+                    type="button"
                     onClick={handleWhatsAppOrder}
                     className="py-2.5 px-4 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors font-medium flex items-center justify-center"
+                    aria-label="طلب عبر واتساب"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

@@ -230,8 +230,10 @@ export default function ProductFilter({
         </div>
         {hasActiveFilters && (
           <button
+            type="button"
             onClick={resetFilters}
             className="bg-primary text-[#122f5b] hover:bg-gray-100 hover:text-[#0f1f3d] font-medium rounded-lg text-sm px-4 py-2.5 transition-colors flex items-center justify-center w-2/12"
+            aria-label="مسح جميع الفلاتر"
           >
             <X className="w-4 h-4 mr-1.5" />
             <span className="hidden md:inline">مسح الكل</span>
@@ -250,22 +252,28 @@ export default function ProductFilter({
         {/* Category Filter */}
         <div className="relative" ref={dropdownRefs.category}>
           <button
+            type="button"
             onClick={() => toggleDropdown("category")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
             } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+            aria-expanded={dropdownOpen.category}
+            aria-haspopup="listbox"
+            aria-label="اختيار الفئة"
           >
             <div className="flex items-center">
               {filters.category !== "جميع الفئات" && (
-                <div
+                <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation()
                     resetFilter("category")
                   }}
                   className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
+                  aria-label="مسح فلتر الفئة"
                 >
                   <X className="w-3.5 h-3.5" />
-                </div>
+                </button>
               )}
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.category ? "rotate-180" : ""}`} />
             </div>
@@ -276,8 +284,14 @@ export default function ProductFilter({
           </button>
 
           {dropdownOpen.category && (
-            <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+            <div
+              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+              role="listbox"
+            >
               <button
+                type="button"
+                role="option"
+                aria-selected={filters.category === "جميع الفئات"}
                 className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                   filters.category === "جميع الفئات" ? "bg-[#122f5b]/10 font-medium" : ""
                 }`}
@@ -288,6 +302,9 @@ export default function ProductFilter({
               {categories.map((category) => (
                 <button
                   key={category}
+                  type="button"
+                  role="option"
+                  aria-selected={filters.category === category}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.category === category ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -303,22 +320,28 @@ export default function ProductFilter({
         {/* Brand Filter */}
         <div className="relative" ref={dropdownRefs.brand}>
           <button
+            type="button"
             onClick={() => toggleDropdown("brand")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.brand !== "جميع العلامات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
             } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+            aria-expanded={dropdownOpen.brand}
+            aria-haspopup="listbox"
+            aria-label="اختيار العلامة التجارية"
           >
             <div className="flex items-center">
               {filters.brand !== "جميع العلامات" && (
-                <div
+                <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation()
                     resetFilter("brand")
                   }}
                   className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
+                  aria-label="مسح فلتر العلامة التجارية"
                 >
                   <X className="w-3.5 h-3.5" />
-                </div>
+                </button>
               )}
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.brand ? "rotate-180" : ""}`} />
             </div>
@@ -329,8 +352,14 @@ export default function ProductFilter({
           </button>
 
           {dropdownOpen.brand && (
-            <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+            <div
+              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+              role="listbox"
+            >
               <button
+                type="button"
+                role="option"
+                aria-selected={filters.brand === "جميع العلامات"}
                 className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                   filters.brand === "جميع العلامات" ? "bg-[#122f5b]/10 font-medium" : ""
                 }`}
@@ -341,6 +370,9 @@ export default function ProductFilter({
               {brands.map((brand) => (
                 <button
                   key={brand}
+                  type="button"
+                  role="option"
+                  aria-selected={filters.brand === brand}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.brand === brand ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -356,22 +388,28 @@ export default function ProductFilter({
         {/* Price Filter */}
         <div className="relative" ref={dropdownRefs.price}>
           <button
+            type="button"
             onClick={() => toggleDropdown("price")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.price !== "جميع الأسعار" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
             } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+            aria-expanded={dropdownOpen.price}
+            aria-haspopup="listbox"
+            aria-label="اختيار نطاق السعر"
           >
             <div className="flex items-center">
               {filters.price !== "جميع الأسعار" && (
-                <div
+                <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation()
                     resetFilter("price")
                   }}
                   className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
+                  aria-label="مسح فلتر السعر"
                 >
                   <X className="w-3.5 h-3.5" />
-                </div>
+                </button>
               )}
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.price ? "rotate-180" : ""}`} />
             </div>
@@ -382,10 +420,16 @@ export default function ProductFilter({
           </button>
 
           {dropdownOpen.price && (
-            <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+            <div
+              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg"
+              role="listbox"
+            >
               {getPriceRanges().map((price) => (
                 <button
                   key={price}
+                  type="button"
+                  role="option"
+                  aria-selected={filters.price === price}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.price === price ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -401,22 +445,28 @@ export default function ProductFilter({
         {/* Sort Filter */}
         <div className="relative" ref={dropdownRefs.sort}>
           <button
+            type="button"
             onClick={() => toggleDropdown("sort")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.sort !== "الأحدث" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
             } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+            aria-expanded={dropdownOpen.sort}
+            aria-haspopup="listbox"
+            aria-label="اختيار طريقة الترتيب"
           >
             <div className="flex items-center">
               {filters.sort !== "الأحدث" && (
-                <div
+                <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation()
                     resetFilter("sort")
                   }}
                   className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
+                  aria-label="مسح فلتر الترتيب"
                 >
                   <X className="w-3.5 h-3.5" />
-                </div>
+                </button>
               )}
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.sort ? "rotate-180" : ""}`} />
             </div>
@@ -427,10 +477,16 @@ export default function ProductFilter({
           </button>
 
           {dropdownOpen.sort && (
-            <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+            <div
+              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg"
+              role="listbox"
+            >
               {getSortOptions().map((sort) => (
                 <button
                   key={sort}
+                  type="button"
+                  role="option"
+                  aria-selected={filters.sort === sort}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.sort === sort ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}

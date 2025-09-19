@@ -290,15 +290,24 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   return (
                     <button
                       key={color}
+                      type="button"
                       onClick={() => setSelectedColor(color)}
-                      className={`w-8 h-8 rounded-full border-2 transition-all ${
+                      className={`w-8 h-8 rounded-full border-2 transition-all relative ${
                         selectedColor === color ? "ring-2 ring-[#ffec35] ring-offset-2" : "ring-1 ring-gray-200"
                       }`}
                       style={{ backgroundColor: bgColor }}
                       aria-label={`اختيار اللون ${color}`}
+                      aria-describedby={`color-${color}-description`}
                       title={color}
                       disabled={!product.inStock}
-                    />
+                    >
+                      <span className="sr-only">{color}</span>
+                      {selectedColor === color && (
+                        <span className="absolute inset-0 flex items-center justify-center">
+                          <span className="w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                        </span>
+                      )}
+                    </button>
                   )
                 })}
               </div>
@@ -325,6 +334,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </label>
                 <div className="flex items-center justify-end">
                   <button
+                    type="button"
                     onClick={increaseQuantity}
                     disabled={!product.inStock}
                     className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-r-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -336,6 +346,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     {quantity}
                   </div>
                   <button
+                    type="button"
                     onClick={decreaseQuantity}
                     disabled={!product.inStock}
                     className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-l-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -364,6 +375,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     <div className="flex gap-2">
                       <motion.button
                         key="add"
+                        type="button"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={handleAddToCart}
@@ -376,10 +388,12 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
                       <motion.button
                         key="whatsapp"
+                        type="button"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={handleWhatsAppInquiry}
                         className="py-3 px-4 bg-green-500 text-white rounded-md flex items-center justify-center hover:bg-green-600 transition-colors"
+                        aria-label="استفسار عبر واتساب"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

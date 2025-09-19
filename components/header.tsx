@@ -154,12 +154,14 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 {/* Mobile Menu Button - Left */}
                 <div className="md:hidden">
                   <button
+                    type="button"
                     className={cn(
                       "p-2 transition-colors",
-                      isScrolled ? "text-[#ffec35] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
+                      isScrolled ? "text-[#122f5b] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
                     )}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="القائمة"
+                    aria-expanded={isMenuOpen}
                   >
                     <Menu size={24} />
                   </button>
@@ -168,7 +170,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                   <img
-                    src="/logo.jpg"
+                    src="/logo.png"
                     alt="شعار الموقع"
                     className="h-10 md:h-14 w-auto transition-opacity duration-300"
                   />
@@ -218,6 +220,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 {/* Desktop Action Icons - Shopping Bag */}
                 <div className="hidden md:flex items-center space-x-4 space-x-reverse">
                   <button
+                    type="button"
                     onClick={openCart}
                     className={cn(
                       "transition-colors relative hover:text-[#ffec35]",
@@ -237,6 +240,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 {/* Mobile Icons */}
                 <div className="flex items-center space-x-3 space-x-reverse md:hidden">
                   <button
+                    type="button"
                     onClick={openCart}
                     className={cn(
                       "relative transition-colors hover:text-[#ffec35]",
@@ -276,19 +280,19 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 animate="open"
                 exit="exit"
                 variants={menuVariants}
-                className="fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-white shadow-xl z-50 md:hidden"
-                style={{ height: windowHeight }}
+                className="fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-white shadow-xl z-50 md:hidden mobile-menu-height"
               >
                 <div className="flex flex-col h-full">
                   {/* Menu Header */}
                   <div className="flex justify-between items-center p-5 border-b border-gray-100">
-                    <img src="/logo.jpg" alt="شعار الموقع" className="h-12 w-auto" />
+                    <img src="/logo.png" alt="شعار الموقع" className="h-12 w-auto" />
                     <button
+                      type="button"
                       onClick={() => setIsMenuOpen(false)}
                       className="p-2 hover:bg-[#ffec35]/10 transition-colors"
                       aria-label="إغلاق القائمة"
                     >
-                      <X size={24} className="text-[#ffec35]" />
+                      <X size={24} className="text-[#122f5b]" />
                     </button>
                   </div>
 
