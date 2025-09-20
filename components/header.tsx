@@ -116,7 +116,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
         <motion.div
           variants={bannerVariants}
           animate={showBanner ? "visible" : "hidden"}
-          className="bg-black text-white overflow-hidden"
+          className="bg-[#122f5b] text-primary overflow-hidden"
         >
           <div className="relative h-8 flex items-center">
             <motion.div
@@ -135,7 +135,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
             >
               {Array.from({ length: 10 }).map((_, index) => (
                 <div key={index} className="flex items-center px-8">
-                  <span className="text-sm font-medium">{bannerText}</span>
+                  <span className="text-sm font-medium" dir="ltr">{bannerText}</span>
                 </div>
               ))}
             </motion.div>
