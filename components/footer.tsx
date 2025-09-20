@@ -90,7 +90,7 @@ export default function Footer() {
 
         {/* Bottom Section - Simplified */}
         <div className="border-t border-white/20 mt-10 pt-6 text-center">
-          <p className="text-xs md:text-sm text-white/60">© {currentYear} كامانو. جميع الحقوق محفوظة.</p>
+          <p className="text-xs md:text-sm text-white/60 " dir="ltr">© {currentYear} Riad Phone. All rights reserved.</p>
         </div>
       </div>
     </footer>

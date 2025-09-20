@@ -204,7 +204,7 @@ export default function ProductFilter({
 
   return (
     <div
-      className={`md:bg-white md:rounded-xl md:shadow-md p-3 md:p-4 mb-4 md:mb-8 transition-all duration-700 transform relative z-30 ${
+      className={`md:bg-white md:rounded-md border border-[#122f5b]/30 p-3 md:p-4 mb-4 md:mb-8 transition-all duration-700 transform relative z-30 ${
         isLoaded ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
       }`}
     >
@@ -215,7 +215,7 @@ export default function ProductFilter({
           <input
             type="text"
             placeholder="ابحث عن المنتجات..."
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent"
+            className="w-full pl-10 pr-3 py-2 border border-[#122f5b]/30 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -232,7 +232,7 @@ export default function ProductFilter({
           <button
             type="button"
             onClick={resetFilters}
-            className="bg-primary text-[#122f5b] hover:bg-gray-100 hover:text-[#0f1f3d] font-medium rounded-lg text-sm px-4 py-2.5 transition-colors flex items-center justify-center w-2/12"
+            className="bg-primary text-[#122f5b] hover:bg-gray-100 hover:text-[#0f1f3d] font-medium rounded-sm text-sm px-4 py-2.5 transition-colors flex items-center justify-center w-2/12"
             aria-label="مسح جميع الفلاتر"
           >
             <X className="w-4 h-4 mr-1.5" />
@@ -255,8 +255,8 @@ export default function ProductFilter({
             type="button"
             onClick={() => toggleDropdown("category")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+              filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/30"
+            } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
             aria-expanded={dropdownOpen.category}
             aria-haspopup="listbox"
             aria-label="اختيار الفئة"
@@ -285,7 +285,7 @@ export default function ProductFilter({
 
           {dropdownOpen.category && (
             <div
-              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+              className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/30 rounded-sm shadow-lg max-h-60 overflow-y-auto"
               role="listbox"
             >
               <button
@@ -323,8 +323,8 @@ export default function ProductFilter({
             type="button"
             onClick={() => toggleDropdown("brand")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.brand !== "جميع العلامات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+              filters.brand !== "جميع العلامات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/30"
+            } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
             aria-expanded={dropdownOpen.brand}
             aria-haspopup="listbox"
             aria-label="اختيار العلامة التجارية"
@@ -353,7 +353,7 @@ export default function ProductFilter({
 
           {dropdownOpen.brand && (
             <div
-              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+              className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/30 rounded-sm shadow-lg max-h-60 overflow-y-auto"
               role="listbox"
             >
               <button
@@ -391,8 +391,8 @@ export default function ProductFilter({
             type="button"
             onClick={() => toggleDropdown("price")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.price !== "جميع الأسعار" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+              filters.price !== "جميع الأسعار" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/30"
+            } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
             aria-expanded={dropdownOpen.price}
             aria-haspopup="listbox"
             aria-label="اختيار نطاق السعر"
@@ -421,7 +421,7 @@ export default function ProductFilter({
 
           {dropdownOpen.price && (
             <div
-              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg"
+              className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/30 rounded-sm shadow-lg"
               role="listbox"
             >
               {getPriceRanges().map((price) => (
@@ -448,8 +448,8 @@ export default function ProductFilter({
             type="button"
             onClick={() => toggleDropdown("sort")}
             className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.sort !== "الأحدث" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-gray-200"
-            } rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+              filters.sort !== "الأحدث" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/30"
+            } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
             aria-expanded={dropdownOpen.sort}
             aria-haspopup="listbox"
             aria-label="اختيار طريقة الترتيب"
@@ -478,7 +478,7 @@ export default function ProductFilter({
 
           {dropdownOpen.sort && (
             <div
-              className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg"
+              className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/30 rounded-sm shadow-lg"
               role="listbox"
             >
               {getSortOptions().map((sort) => (
