@@ -110,6 +110,7 @@ export default function FeaturedProducts({ categoryFilter }: FeaturedProductsPro
             categoryFilter ? products.filter((p) => p.category === categoryFilter).length : products.length
           }
           filteredCount={filteredProducts.length}
+          categoryFilter={categoryFilter}
         />
 
         {filteredProducts.length > 0 ? (
