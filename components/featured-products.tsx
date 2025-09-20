@@ -85,7 +85,7 @@ export default function FeaturedProducts({ categoryFilter }: FeaturedProductsPro
   const sectionTitle = categoryFilter ? `منتجات ${categoryFilter}` : "جميع المنتجات"
 
   return (
-    <section id="products" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="products" className=" mt-20 py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
