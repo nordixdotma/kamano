@@ -246,7 +246,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1.5 border rounded-md text-xs font-medium transition-colors ${
+                    className={`px-3 py-2 border rounded-sm text-xs font-medium transition-colors ${
                       selectedSize === size
                         ? "bg-[#ffec35] text-black border-[#ffec35]"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
@@ -365,7 +365,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="w-full bg-green-100 text-green-800 px-4 py-2.5 rounded-md flex items-center justify-center text-sm"
+                      className="w-full bg-green-100 text-green-800 px-4 py-2.5 rounded-sm flex items-center justify-center text-sm"
                     >
                       <Check size={16} className="ml-2" />
                       تم إضافته للسلة
@@ -379,7 +379,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         whileTap={{ scale: 0.98 }}
                         onClick={handleAddToCart}
                         disabled={!product.inStock}
-                        className="flex-1 py-2.5 px-4 bg-[#ffec35] text-black rounded-md flex items-center justify-center hover:bg-[#e6d42f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed font-bold text-sm"
+                        className="flex-1 py-2.5 px-4 bg-[#ffec35] text-black rounded-sm flex items-center justify-center hover:bg-[#e6d42f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed font-bold text-sm"
                       >
                         <ShoppingBag size={16} className="ml-2" />
                         {product.inStock ? "إضافة للسلة" : "غير متوفر"}
@@ -391,7 +391,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={handleWhatsAppInquiry}
-                        className="py-2.5 px-4 bg-green-500 text-white rounded-md flex items-center justify-center hover:bg-green-600 transition-colors text-sm"
+                        className="py-2.5 px-4 bg-green-500 text-white rounded-sm flex items-center justify-center hover:bg-green-600 transition-colors text-sm"
                         aria-label="استفسار عبر واتساب"
                       >
                         <svg

@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://riadphone.com",
+    canonical: "https://riadphone.store",
   },
   openGraph: {
     title: "Riad Phone - أحدث الأجهزة الإلكترونية بأفضل الأسعار في المغرب",
     description: "اكتشف أحدث الأجهزة الإلكترونية والتقنيات بأفضل الأسعار في المغرب. توصيل مجاني لجميع أنحاء المملكة.",
-    url: "https://riadphone.com",
+    url: "https://riadphone.store",
     siteName: "Riad Phone",
     images: [
       {
@@ -97,7 +97,7 @@ export default function RootLayout({
               "@type": "Store",
               name: "Riad Phone",
               description: "متجر الأجهزة الإلكترونية والتقنيات الحديثة في المغرب",
-              url: "https://riadphone.com",
+              url: "https://riadphone.store",
               telephone: "+212704749027",
               address: {
                 "@type": "PostalAddress",
