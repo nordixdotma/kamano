@@ -23,7 +23,7 @@ export default function Footer() {
 
             {/* Special Offer Banner */}
             <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20">
-              <p className="text-xs md:text-sm font-medium text-white">🎉 عرض خاص: التوصيل مجاناً في جميع أنحاء المغرب</p>
+              <p className="text-xs md:text-sm font-medium text-white">🎉 عرض خاص: توصيل مجاني و سريع في شمال المغرب</p>
             </div>
           </div>
 
