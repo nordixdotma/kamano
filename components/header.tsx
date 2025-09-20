@@ -155,7 +155,7 @@ export default function Header({ forceWhite = false }: HeaderProps) {
                 <button
                   type="button"
                   className={cn(
-                    "transition-colors",
+                    "py-2 transition-colors",
                     isScrolled ? "text-[#122f5b] hover:bg-[#ffec35]/10" : "text-black hover:bg-white/10",
                   )}
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
