@@ -69,6 +69,19 @@ body {
   height: 100vh;
 }
 
+/* Updated color button styles to use proper Tailwind classes */
+.color-button-base {
+  @apply w-7 h-7 rounded-full border-2 transition-all duration-200 relative;
+}
+
+.color-button-selected {
+  @apply ring-2 ring-[#ffec35] ring-offset-2;
+}
+
+.color-button-unselected {
+  @apply ring-1 ring-gray-300 hover:ring-[#ffec35]/50;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

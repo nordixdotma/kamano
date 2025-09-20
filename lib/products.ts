@@ -6,6 +6,7 @@ export interface Product {
   brand?: string
   oldPrice: string // Original price (crossed out)
   newPrice: string // Current discounted price
+  price: string // Added for cart compatibility - will be set to newPrice when adding to cart
   materials: string[]
   sizes: string[]
   colors: string[]
@@ -23,6 +24,7 @@ export const products: Product[] = [
     brand: "Samsung",
     oldPrice: "15000 درهم",
     newPrice: "12500 درهم",
+    price: "12500 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["256GB", "512GB", "1TB"],
     colors: ["أسود", "رمادي", "ذهبي"],
@@ -49,6 +51,7 @@ export const products: Product[] = [
     brand: "Apple",
     oldPrice: "25000 درهم",
     newPrice: "22000 درهم",
+    price: "22000 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["M3", "M3 Pro", "M3 Max"],
     colors: ["رمادي فضائي", "فضي"],
@@ -75,6 +78,7 @@ export const products: Product[] = [
     brand: "Sony",
     oldPrice: "4500 درهم",
     newPrice: "3200 درهم",
+    price: "3200 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["مقاس واحد"],
     colors: ["أسود", "فضي"],
@@ -99,6 +103,7 @@ export const products: Product[] = [
     brand: "Samsung",
     oldPrice: "12000 درهم",
     newPrice: "9500 درهم",
+    price: "9500 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["55 بوصة", "65 بوصة", "75 بوصة"],
     colors: ["أسود"],
@@ -125,6 +130,7 @@ export const products: Product[] = [
     brand: "Apple",
     oldPrice: "16000 درهم",
     newPrice: "14200 درهم",
+    price: "14200 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["256GB", "512GB", "1TB"],
     colors: ["تيتانيوم طبيعي", "تيتانيوم أزرق", "تيتانيوم أبيض", "تيتانيوم أسود"],
@@ -149,6 +155,7 @@ export const products: Product[] = [
     brand: "Dell",
     oldPrice: "14000 درهم",
     newPrice: "11800 درهم",
+    price: "11800 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["Intel i5", "Intel i7"],
     colors: ["فضي", "أسود"],
@@ -173,6 +180,7 @@ export const products: Product[] = [
     brand: "Apple",
     oldPrice: "3200 درهم",
     newPrice: "2650 درهم",
+    price: "2650 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["مقاس واحد"],
     colors: ["أبيض"],
@@ -197,6 +205,7 @@ export const products: Product[] = [
     brand: "Samsung",
     oldPrice: "3500 درهم",
     newPrice: "2800 درهم",
+    price: "2800 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["40mm", "44mm"],
     colors: ["أسود", "فضي", "ذهبي"],
@@ -221,6 +230,7 @@ export const products: Product[] = [
     brand: "LG",
     oldPrice: "15000 درهم",
     newPrice: "12500 درهم",
+    price: "12500 درهم", // Added for cart compatibility
     materials: [],
     sizes: ["55 بوصة", "65 بوصة", "77 بوصة"],
     colors: ["أسود"],

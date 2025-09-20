@@ -291,12 +291,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       key={color}
                       type="button"
                       onClick={() => setSelectedColor(color)}
-                      className={`w-7 h-7 rounded-full border-2 transition-all relative ${
-                        selectedColor === color ? "ring-2 ring-[#ffec35] ring-offset-2" : "ring-1 ring-gray-200"
+                      className={`color-button-base ${
+                        selectedColor === color ? "color-button-selected" : "color-button-unselected"
                       }`}
-                      style={{ backgroundColor: bgColor }}
                       aria-label={`اختيار اللون ${color}`}
-                      aria-describedby={`color-${color}-description`}
                       title={color}
                       disabled={!product.inStock}
                     >
@@ -328,7 +326,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             <div className="flex flex-col space-y-3">
               {/* Quantity */}
               <div>
-                <label htmlFor="quantity" className="block text-xs font-medium text-gray-700 mb-1.5 text-right">
+                <label htmlFor="quantity-display" className="block text-xs font-medium text-gray-700 mb-1.5 text-right">
                   الكمية
                 </label>
                 <div className="flex items-center justify-end">
@@ -341,13 +339,20 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   >
                     <Plus size={14} />
                   </button>
-                  <div className="w-14 h-9 flex items-center justify-center border-t border-b border-gray-300 text-center text-sm">
+                  <div
+                    id="quantity-display"
+                    className="w-14 h-9 flex items-center justify-center border-t border-b border-gray-300 text-center text-sm"
+                    role="spinbutton"
+                    aria-valuenow={quantity}
+                    aria-valuemin={1}
+                    aria-label={`الكمية المحددة: ${quantity}`}
+                  >
                     {quantity}
                   </div>
                   <button
                     type="button"
                     onClick={decreaseQuantity}
-                    disabled={!product.inStock}
+                    disabled={!product.inStock || quantity <= 1}
                     className="w-9 h-9 flex items-center justify-center border border-gray-300 rounded-l-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="تقليل الكمية"
                   >

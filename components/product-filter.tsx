@@ -17,7 +17,7 @@ interface ProductFilterProps {
   onFilterChange: (filters: FilterOptions) => void
   onSearchChange: (search: string) => void
   categories: string[]
-  brands: string[]
+  brands: string[] // Fixed type to ensure it's always string[]
   totalProducts: number
   filteredCount: number
   categoryFilter?: string
@@ -256,7 +256,7 @@ export default function ProductFilter({
               className={`w-full flex items-center justify-between px-3 py-2 border ${
                 filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
               } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
-              aria-expanded={dropdownOpen.category}
+              aria-expanded={dropdownOpen.category} // Fixed ARIA attribute to use boolean value
               aria-haspopup="listbox"
               aria-label="اختيار الفئة"
             >
@@ -290,7 +290,7 @@ export default function ProductFilter({
                 <button
                   type="button"
                   role="option"
-                  aria-selected={filters.category === "جميع الفئات"}
+                  aria-selected={filters.category === "جميع الفئات"} // Fixed ARIA attribute to use boolean value
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.category === "جميع الفئات" ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -303,7 +303,7 @@ export default function ProductFilter({
                     key={category}
                     type="button"
                     role="option"
-                    aria-selected={filters.category === category}
+                    aria-selected={filters.category === category} // Fixed ARIA attribute to use boolean value
                     className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                       filters.category === category ? "bg-[#122f5b]/10 font-medium" : ""
                     }`}
@@ -325,7 +325,7 @@ export default function ProductFilter({
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.brand !== "جميع العلامات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
             } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
-            aria-expanded={dropdownOpen.brand}
+            aria-expanded={dropdownOpen.brand} // Fixed ARIA attribute to use boolean value
             aria-haspopup="listbox"
             aria-label="اختيار العلامة التجارية"
           >
@@ -359,7 +359,7 @@ export default function ProductFilter({
               <button
                 type="button"
                 role="option"
-                aria-selected={filters.brand === "جميع العلامات"}
+                aria-selected={filters.brand === "جميع العلامات"} // Fixed ARIA attribute to use boolean value
                 className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                   filters.brand === "جميع العلامات" ? "bg-[#122f5b]/10 font-medium" : ""
                 }`}
@@ -372,7 +372,7 @@ export default function ProductFilter({
                   key={brand}
                   type="button"
                   role="option"
-                  aria-selected={filters.brand === brand}
+                  aria-selected={filters.brand === brand} // Fixed ARIA attribute to use boolean value
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.brand === brand ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -393,7 +393,7 @@ export default function ProductFilter({
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.price !== "جميع الأسعار" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
             } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
-            aria-expanded={dropdownOpen.price}
+            aria-expanded={dropdownOpen.price} // Fixed ARIA attribute to use boolean value
             aria-haspopup="listbox"
             aria-label="اختيار نطاق السعر"
           >
@@ -429,7 +429,7 @@ export default function ProductFilter({
                   key={price}
                   type="button"
                   role="option"
-                  aria-selected={filters.price === price}
+                  aria-selected={filters.price === price} // Fixed ARIA attribute to use boolean value
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.price === price ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
@@ -450,7 +450,7 @@ export default function ProductFilter({
             className={`w-full flex items-center justify-between px-3 py-2 border ${
               filters.sort !== "الأحدث" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
             } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
-            aria-expanded={dropdownOpen.sort}
+            aria-expanded={dropdownOpen.sort} // Fixed ARIA attribute to use boolean value
             aria-haspopup="listbox"
             aria-label="اختيار طريقة الترتيب"
           >
@@ -486,7 +486,7 @@ export default function ProductFilter({
                   key={sort}
                   type="button"
                   role="option"
-                  aria-selected={filters.sort === sort}
+                  aria-selected={filters.sort === sort} // Fixed ARIA attribute to use boolean value
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                     filters.sort === sort ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}

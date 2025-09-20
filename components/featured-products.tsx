@@ -19,7 +19,12 @@ export default function FeaturedProducts({ categoryFilter }: FeaturedProductsPro
   })
 
   const [searchTerm, setSearchTerm] = useState("")
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<{
+    categories: string[]
+    brands: string[]
+    priceRange: { min: number; max: number }
+    sortBy: string
+  }>({
     categories: [],
     brands: [],
     priceRange: { min: 0, max: 50000 },
@@ -28,7 +33,7 @@ export default function FeaturedProducts({ categoryFilter }: FeaturedProductsPro
 
   // Extract unique categories and brands
   const categories = [...new Set(products.map((p) => p.category))]
-  const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))]
+  const brands = [...new Set(products.map((p) => p.brand).filter((brand): brand is string => Boolean(brand)))]
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
