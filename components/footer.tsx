@@ -16,27 +16,27 @@ export default function Footer() {
             <Link href="/" className="inline-block">
               <Image src="/logo.png" alt="كامانو" width={120} height={40} className="h-20 w-auto" />
             </Link>
-            <p className="mt-4 text-sm text-white/80 leading-relaxed">
+            <p className="mt-4 text-xs md:text-sm text-white/80 leading-relaxed">
               متجرك الموثوق للإلكترونيات في المغرب. نقدم أحدث الأجهزة التقنية بأفضل الأسعار مع ضمان الجودة والخدمة
               المتميزة.
             </p>
 
             {/* Special Offer Banner */}
             <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20">
-              <p className="text-sm font-medium text-white">🎉 عرض خاص: التوصيل مجاناً في جميع أنحاء المغرب</p>
+              <p className="text-xs md:text-sm font-medium text-white">🎉 عرض خاص: التوصيل مجاناً في جميع أنحاء المغرب</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 lg:col-span-2 lg:grid-cols-2">
             {/* Categories */}
             <div className="text-right">
-              <h3 className="text-lg font-bold text-white mb-4">فئات المنتجات</h3>
+              <h3 className="text-base md:text-lg font-bold text-white mb-4">فئات المنتجات</h3>
               <ul className="space-y-3">
                 {categories.map((category) => (
                   <li key={category}>
                     <Link
                       href={`/category/${encodeURIComponent(category)}`}
-                      className="text-white/80 hover:text-white transition-colors text-sm"
+                      className="text-white/80 hover:text-white transition-colors text-xs md:text-sm"
                     >
                       {category}
                     </Link>
@@ -47,18 +47,18 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div className="text-right">
-              <h3 className="text-lg font-bold text-white mb-4">تواصل معنا</h3>
+              <h3 className="text-base md:text-lg font-bold text-white mb-4">تواصل معنا</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-start">
-                  <span className="text-white/80 text-sm ml-3">+212 7 04 74 90 27</span>
+                  <span className="text-white/80 text-xs md:text-sm ml-3">+212 7 04 74 90 27</span>
                   <Phone size={16} className="text-white/60" />
                 </div>
                 <div className="flex items-center justify-start">
-                  <span className="text-white/80 text-sm ml-3">riadphone.store@gmail.com</span>
+                  <span className="text-white/80 text-xs md:text-sm ml-3">riadphone.store@gmail.com</span>
                   <Mail size={16} className="text-white/60" />
                 </div>
                 <div className="flex items-start justify-start">
-                  <span className="text-white/80 text-sm ml-3 text-right">المغرب، مرتيل</span>
+                  <span className="text-white/80 text-xs md:text-sm ml-3 text-right">المغرب، مرتيل</span>
                   <MapPin size={16} className="text-white/60 mt-0.5" />
                 </div>
               </div>
@@ -90,7 +90,7 @@ export default function Footer() {
 
         {/* Bottom Section - Simplified */}
         <div className="border-t border-white/20 mt-10 pt-6 text-center">
-          <p className="text-sm text-white/60">© {currentYear} كامانو. جميع الحقوق محفوظة.</p>
+          <p className="text-xs md:text-sm text-white/60">© {currentYear} كامانو. جميع الحقوق محفوظة.</p>
         </div>
       </div>
     </footer>

@@ -100,10 +100,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
-      <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-12 md:pb-16">
+      <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
         {/* Left Column - Product Images */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* Main Image Container */}
           <div className="relative aspect-square overflow-hidden rounded-xl border border-gray-100 bg-gray-50 shadow-sm md:max-w-[90%] lg:max-w-[80%] mx-auto">
             {/* Navigation Arrows */}
@@ -177,27 +177,27 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         </div>
 
         {/* Right Column - Product Details */}
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-4">
           {/* Product Name, Brand and Pricing */}
-          <div className="border-b border-gray-100 pb-6">
+          <div className="border-b border-gray-100 pb-4">
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#122f5b] mb-2 text-right">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#122f5b] mb-2 text-right">
                 {product.name}
               </h1>
 
               {/* Brand and Category */}
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3">
                 <div className="text-right">
-                  {product.brand && <p className="text-gray-600 text-base">العلامة التجارية: {product.brand}</p>}
-                  <p className="text-gray-600 text-sm">الفئة: {product.category}</p>
+                  {product.brand && <p className="text-gray-600 text-sm">العلامة التجارية: {product.brand}</p>}
+                  <p className="text-gray-600 text-xs">الفئة: {product.category}</p>
                 </div>
               </div>
 
               {/* Pricing */}
-              <div className="text-right mb-3">
-                <p className="text-lg text-gray-400 line-through">{product.oldPrice}</p>
-                <p className="text-2xl sm:text-3xl font-bold text-[#122f5b]">{product.newPrice}</p>
-                <p className="text-sm text-green-600 font-medium">
+              <div className="text-right mb-2">
+                <p className="text-base text-gray-400 line-through">{product.oldPrice}</p>
+                <p className="text-xl sm:text-2xl font-bold text-[#122f5b]">{product.newPrice}</p>
+                <p className="text-xs text-green-600 font-medium">
                   وفر{" "}
                   {Number.parseInt(product.oldPrice.replace(/\D/g, "")) -
                     Number.parseInt(product.newPrice.replace(/\D/g, ""))}{" "}
@@ -207,14 +207,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </motion.div>
 
             {/* Stock Status */}
-            <div className="mt-2">
+            <div className="mt-1">
               {product.inStock ? (
-                <p className="text-green-600 text-sm flex items-center justify-end">
-                  <Check size={16} className="ml-1" />
+                <p className="text-green-600 text-xs flex items-center justify-end">
+                  <Check size={14} className="ml-1" />
                   متوفر في المخزون
                 </p>
               ) : (
-                <p className="text-[#122f5b] text-sm flex items-center justify-end">
+                <p className="text-[#122f5b] text-xs flex items-center justify-end">
                   <span className="ml-1">•</span>
                   غير متوفر
                 </p>
@@ -224,13 +224,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Specifications */}
           {product.specifications && Object.keys(product.specifications).length > 0 && (
-            <div className="pt-2">
-              <h3 className="text-lg font-bold text-gray-700 mb-3 text-right">المواصفات التقنية</h3>
-              <div className="grid grid-cols-1 gap-2">
+            <div className="pt-1">
+              <h3 className="text-base font-bold text-gray-700 mb-2 text-right">المواصفات التقنية</h3>
+              <div className="grid grid-cols-1 gap-1">
                 {Object.entries(product.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600 text-sm">{value}</span>
-                    <span className="font-medium text-gray-800 text-sm">{key}</span>
+                  <div key={key} className="flex justify-between items-center py-1.5 border-b border-gray-100">
+                    <span className="text-gray-600 text-xs">{value}</span>
+                    <span className="font-medium text-gray-800 text-xs">{key}</span>
                   </div>
                 ))}
               </div>
@@ -239,14 +239,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Size/Storage Selection */}
           {product.sizes.length > 0 && (
-            <div className="pt-2">
-              <h3 className="text-sm font-medium text-gray-700 mb-2 text-right">الخيارات المتاحة</h3>
+            <div className="pt-1">
+              <h3 className="text-xs font-medium text-gray-700 mb-2 text-right">الخيارات المتاحة</h3>
               <div className="flex flex-wrap gap-2 justify-end">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
+                    className={`px-3 py-1.5 border rounded-md text-xs font-medium transition-colors ${
                       selectedSize === size
                         ? "bg-[#ffec35] text-black border-[#ffec35]"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
@@ -262,11 +262,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Color Selection */}
           {product.colors.length > 0 && (
-            <div className="pt-2">
-              <h3 className="text-sm font-medium text-gray-700 mb-2 text-right">الألوان المتاحة</h3>
+            <div className="pt-1">
+              <h3 className="text-xs font-medium text-gray-700 mb-2 text-right">الألوان المتاحة</h3>
               <div className="flex flex-wrap gap-3 justify-end">
                 {product.colors.map((color) => {
-                  // Map color names to actual color values for the UI
                   const colorMap: Record<string, string> = {
                     أبيض: "#ffffff",
                     أسود: "#333333",
@@ -292,7 +291,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       key={color}
                       type="button"
                       onClick={() => setSelectedColor(color)}
-                      className={`w-8 h-8 rounded-full border-2 transition-all relative ${
+                      className={`w-7 h-7 rounded-full border-2 transition-all relative ${
                         selectedColor === color ? "ring-2 ring-[#ffec35] ring-offset-2" : "ring-1 ring-gray-200"
                       }`}
                       style={{ backgroundColor: bgColor }}
@@ -304,32 +303,32 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       <span className="sr-only">{color}</span>
                       {selectedColor === color && (
                         <span className="absolute inset-0 flex items-center justify-center">
-                          <span className="w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                          <span className="w-1.5 h-1.5 bg-white rounded-full shadow-sm"></span>
                         </span>
                       )}
                     </button>
                   )
                 })}
               </div>
-              <p className="text-sm text-gray-500 mt-2 text-right">اللون المختار: {selectedColor}</p>
+              <p className="text-xs text-gray-500 mt-1 text-right">اللون المختار: {selectedColor}</p>
             </div>
           )}
 
           {/* Shipping Information */}
-          <div className="flex items-center border-l-4 border-green-500 pl-4 py-2 bg-green-100">
-            <Truck size={18} className="text-green-500 mx-3" />
+          <div className="flex items-center border-l-4 border-green-500 pl-3 py-1.5 bg-green-100">
+            <Truck size={16} className="text-green-500 mx-2" />
             <div>
-              <p className="font-medium text-green-500">التوصيل متاح</p>
+              <p className="font-medium text-green-500 text-sm">التوصيل متاح</p>
               <p className="text-xs text-gray-600">التوصيل متاح في جميع أنحاء المغرب</p>
             </div>
           </div>
 
           {/* Quantity Selector and Add to Cart */}
-          <div className="pt-4">
-            <div className="flex flex-col space-y-4">
+          <div className="pt-3">
+            <div className="flex flex-col space-y-3">
               {/* Quantity */}
               <div>
-                <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2 text-right">
+                <label htmlFor="quantity" className="block text-xs font-medium text-gray-700 mb-1.5 text-right">
                   الكمية
                 </label>
                 <div className="flex items-center justify-end">
@@ -337,22 +336,22 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     type="button"
                     onClick={increaseQuantity}
                     disabled={!product.inStock}
-                    className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-r-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-9 h-9 flex items-center justify-center border border-gray-300 rounded-r-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="زيادة الكمية"
                   >
-                    <Plus size={16} />
+                    <Plus size={14} />
                   </button>
-                  <div className="w-16 h-10 flex items-center justify-center border-t border-b border-gray-300 text-center">
+                  <div className="w-14 h-9 flex items-center justify-center border-t border-b border-gray-300 text-center text-sm">
                     {quantity}
                   </div>
                   <button
                     type="button"
                     onClick={decreaseQuantity}
                     disabled={!product.inStock}
-                    className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-l-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-9 h-9 flex items-center justify-center border border-gray-300 rounded-l-md hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="تقليل الكمية"
                   >
-                    <Minus size={16} />
+                    <Minus size={14} />
                   </button>
                 </div>
               </div>
@@ -366,9 +365,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="w-full bg-green-100 text-green-800 px-4 py-3 rounded-md flex items-center justify-center"
+                      className="w-full bg-green-100 text-green-800 px-4 py-2.5 rounded-md flex items-center justify-center text-sm"
                     >
-                      <Check size={18} className="ml-2" />
+                      <Check size={16} className="ml-2" />
                       تم إضافته للسلة
                     </motion.div>
                   ) : (
@@ -380,9 +379,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         whileTap={{ scale: 0.98 }}
                         onClick={handleAddToCart}
                         disabled={!product.inStock}
-                        className="flex-1 py-3 px-4 bg-[#ffec35] text-black rounded-md flex items-center justify-center hover:bg-[#e6d42f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed font-bold"
+                        className="flex-1 py-2.5 px-4 bg-[#ffec35] text-black rounded-md flex items-center justify-center hover:bg-[#e6d42f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed font-bold text-sm"
                       >
-                        <ShoppingBag size={18} className="ml-2" />
+                        <ShoppingBag size={16} className="ml-2" />
                         {product.inStock ? "إضافة للسلة" : "غير متوفر"}
                       </motion.button>
 
@@ -392,14 +391,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={handleWhatsAppInquiry}
-                        className="py-3 px-4 bg-green-500 text-white rounded-md flex items-center justify-center hover:bg-green-600 transition-colors"
+                        className="py-2.5 px-4 bg-green-500 text-white rounded-md flex items-center justify-center hover:bg-green-600 transition-colors text-sm"
                         aria-label="استفسار عبر واتساب"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
-                          width="18"
-                          height="18"
+                          width="16"
+                          height="16"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="0"

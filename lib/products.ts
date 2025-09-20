@@ -243,3 +243,7 @@ export const products: Product[] = [
 export function getProductById(id: number): Product | undefined {
   return products.find((product) => product.id === id)
 }
+
+export function getAllProducts(): Product[] {
+  return products
+}
