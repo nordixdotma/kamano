@@ -20,6 +20,7 @@ interface ProductFilterProps {
   brands: string[]
   totalProducts: number
   filteredCount: number
+  categoryFilter?: string
 }
 
 type FilterType = "category" | "brand" | "price" | "sort"
@@ -45,6 +46,7 @@ export default function ProductFilter({
   brands,
   totalProducts,
   filteredCount,
+  categoryFilter,
 }: ProductFilterProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
@@ -69,14 +71,12 @@ export default function ProductFilter({
     sort: useRef<HTMLDivElement>(null),
   }
 
-  // Check if any filter is applied
   const hasActiveFilters =
     filters.category !== "جميع الفئات" ||
     filters.brand !== "جميع العلامات" ||
     filters.price !== "جميع الأسعار" ||
     searchTerm !== ""
 
-  // Get price ranges
   const getPriceRanges = () => [
     "جميع الأسعار",
     "أقل من 2000 درهم",
@@ -87,7 +87,6 @@ export default function ProductFilter({
     "أكثر من 25000 درهم",
   ]
 
-  // Get sort options
   const getSortOptions = () => [
     "الأحدث",
     "السعر: من الأقل للأعلى",
@@ -118,7 +117,6 @@ export default function ProductFilter({
     }
   }, [])
 
-  // Update filters when they change
   useEffect(() => {
     const filterOptions: FilterOptions = {
       categories: filters.category === "جميع الفئات" ? [] : [filters.category],
@@ -248,74 +246,76 @@ export default function ProductFilter({
       </div>
 
       {/* Filters Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {/* Category Filter */}
-        <div className="relative" ref={dropdownRefs.category}>
-          <button
-            type="button"
-            onClick={() => toggleDropdown("category")}
-            className={`w-full flex items-center justify-between px-3 py-2 border ${
-              filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
-            } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
-            aria-expanded={dropdownOpen.category}
-            aria-haspopup="listbox"
-            aria-label="اختيار الفئة"
-          >
-            <div className="flex items-center">
-              {filters.category !== "جميع الفئات" && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    resetFilter("category")
-                  }}
-                  className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
-                  aria-label="مسح فلتر الفئة"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
-              <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.category ? "rotate-180" : ""}`} />
-            </div>
-            <div className="flex items-center">
-              <span className="truncate text-xs md:text-sm">{filters.category}</span>
-              <Grid3X3 className="w-4 h-4 mr-2 text-gray-500" />
-            </div>
-          </button>
-
-          {dropdownOpen.category && (
-            <div
-              className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/20 rounded-sm shadow-lg max-h-60 overflow-y-auto"
-              role="listbox"
+      <div className={`grid gap-3 ${categoryFilter ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2 md:grid-cols-4"}`}>
+        {/* Category Filter - Hidden on category pages */}
+        {!categoryFilter && (
+          <div className="relative" ref={dropdownRefs.category}>
+            <button
+              type="button"
+              onClick={() => toggleDropdown("category")}
+              className={`w-full flex items-center justify-between px-3 py-2 border ${
+                filters.category !== "جميع الفئات" ? "border-[#122f5b] bg-[#122f5b]/10" : "border-[#122f5b]/20"
+              } rounded-sm text-right text-sm focus:outline-none focus:ring-2 focus:ring-[#122f5b] focus:border-transparent transition-colors`}
+              aria-expanded={dropdownOpen.category}
+              aria-haspopup="listbox"
+              aria-label="اختيار الفئة"
             >
-              <button
-                type="button"
-                role="option"
-                aria-selected={filters.category === "جميع الفئات"}
-                className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                  filters.category === "جميع الفئات" ? "bg-[#122f5b]/10 font-medium" : ""
-                }`}
-                onClick={() => setFilter("category", "جميع الفئات")}
+              <div className="flex items-center">
+                {filters.category !== "جميع الفئات" && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      resetFilter("category")
+                    }}
+                    className="ml-1 text-[#122f5b] hover:text-[#0f1f3d] cursor-pointer"
+                    aria-label="مسح فلتر الفئة"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+                <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen.category ? "rotate-180" : ""}`} />
+              </div>
+              <div className="flex items-center">
+                <span className="truncate text-xs md:text-sm">{filters.category}</span>
+                <Grid3X3 className="w-4 h-4 mr-2 text-gray-500" />
+              </div>
+            </button>
+
+            {dropdownOpen.category && (
+              <div
+                className="absolute z-50 mt-1 w-full bg-white border border-[#122f5b]/20 rounded-sm shadow-lg max-h-60 overflow-y-auto"
+                role="listbox"
               >
-                جميع الفئات
-              </button>
-              {categories.map((category) => (
                 <button
-                  key={category}
                   type="button"
                   role="option"
-                  aria-selected={filters.category === category}
+                  aria-selected={filters.category === "جميع الفئات"}
                   className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
-                    filters.category === category ? "bg-[#122f5b]/10 font-medium" : ""
+                    filters.category === "جميع الفئات" ? "bg-[#122f5b]/10 font-medium" : ""
                   }`}
-                  onClick={() => setFilter("category", category)}
+                  onClick={() => setFilter("category", "جميع الفئات")}
                 >
-                  {category}
+                  جميع الفئات
                 </button>
-              ))}
-            </div>
-          )}
-        </div>
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    role="option"
+                    aria-selected={filters.category === category}
+                    className={`w-full text-right px-3 py-2 text-sm hover:bg-gray-100 ${
+                      filters.category === category ? "bg-[#122f5b]/10 font-medium" : ""
+                    }`}
+                    onClick={() => setFilter("category", category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Brand Filter */}
         <div className="relative" ref={dropdownRefs.brand}>
@@ -442,8 +442,8 @@ export default function ProductFilter({
           )}
         </div>
 
-        {/* Sort Filter */}
-        <div className="relative" ref={dropdownRefs.sort}>
+        {/* Sort Filter - Takes full width when category is hidden */}
+        <div className={`relative ${categoryFilter ? "col-span-2 md:col-span-1" : ""}`} ref={dropdownRefs.sort}>
           <button
             type="button"
             onClick={() => toggleDropdown("sort")}
